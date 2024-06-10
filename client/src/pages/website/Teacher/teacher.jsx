@@ -5,6 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { FiCalendar, FiDelete, FiEdit } from "react-icons/fi";
+import { ReactTyped } from "react-typed";
+import imageSrc from "../../../assests/Images/image.png";
 
 const Teacher = ({
   data,
@@ -15,23 +17,34 @@ const Teacher = ({
   return (
     <div>
       <div className="p-20 w-full flex">
-        <div className="flex flex-col lg:flex-row justify-between items-center">
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full">
           <div className="lg:w-1/2">
-            <p className="font-semibold text-5xl break-words">Welcome !</p>
-            <p className="break-words overflow-hidden text-xl mt-4 lg:w-2/3">
-              Ready to share your expertise with eager learners?
-              <br />
-              Begin your journey of enriching minds by uploading your courses.
-              <br />
-              Inspire curiosity, spark creativity, and empower others to reach
-              their full potential through your teachings.
-            </p>
+            <ReactTyped
+              strings={["Welcome "]}
+              typeSpeed={100}
+              cursorChar="!"
+              className="text-5xl break-words"
+            />
+            <div className="break-words overflow-hidden text-xl mt-4 lg:w-2/3 h-36">
+              <ReactTyped
+                strings={[
+                  "Ready to share your expertise with eager learners.",
+                  "Begin your journey of enriching minds by uploading your courses.",
+                  "Inspire curiosity, spark creativity, and empower others to reach their full potential through your teachings.",
+                ]}
+                typeSpeed={50}
+                backSpeed={25}
+                loop
+                showCursor
+                cursorChar="|"
+              />
+            </div>
           </div>
-          <div className="w-full h-96 mb-4 ">
+          <div className="w-full h-96 mb-4 lg:ml-4">
             <img
-              className="w-full h-full object-cover rounded-md drop-shadow-2xl"
-              src={require("../../../assests/Images/image.png")}
-              alt="NoImage"
+              className="w-full h-full object-cover rounded-md drop-shadow-2xl shadow-2xl"
+              src={imageSrc}
+              alt="Teaching"
             />
           </div>
         </div>

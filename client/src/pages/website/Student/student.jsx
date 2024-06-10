@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/free-mode";
 import { FiCalendar } from "react-icons/fi";
+import imageSrc from "../../../assests/Images/image.png"; //
+import { ReactTyped } from "react-typed";
 
 const Student = ({
   allCourses,
@@ -27,23 +29,33 @@ const Student = ({
   return (
     <div>
       <div className="p-20 w-full flex">
-        <div className="flex flex-col lg:flex-row justify-between items-center">
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full">
           <div className="lg:w-1/2">
-            <p className="font-semibold text-5xl break-words">Welcome !</p>
-            <p className="break-words overflow-hidden text-xl mt-4 lg:w-2/3">
-              Discover the world of learning tailored just for you.
-              <br />
-              Unleash your potential with our curated selection of courses
-              designed to ignite your passion and fuel your ambitions.
-              <br />
-              Choose your mentor, embark on a journey of knowledge, and unlock
-              endless possibilities.
-            </p>
+            <ReactTyped
+              strings={["Welcome "]}
+              typeSpeed={100}
+              cursorChar="!"
+              className="text-5xl break-words"
+            />{" "}
+            <div className="break-words overflow-hidden text-xl mt-4 lg:w-2/3 max-h-36">
+              <ReactTyped
+                strings={[
+                  "Discover the world of learning tailored just for you.",
+                  "Unleash your potential with our curated selection of courses designed to ignite your passion and fuel your ambitions.",
+                  "Choose your mentor, embark on a journey of knowledge, and unlock endless possibilities.",
+                ]}
+                typeSpeed={50}
+                backSpeed={25}
+                loop
+                showCursor
+                cursorChar="|"
+              />
+            </div>
           </div>
-          <div className="w-full md:w-2/3 h-96">
+          <div className="w-full md:w-2/3 h-96 lg:ml-4">
             <img
-              className="w-full h-full object-cover rounded-md drop-shadow-2xl"
-              src={require("../../../assests/Images/image.png")}
+              className="w-full h-full object-cover rounded-md drop-shadow-2xl shadow-2xl"
+              src={imageSrc}
               alt="NoImage"
             />
           </div>
@@ -52,40 +64,46 @@ const Student = ({
       </div>
       <p className="mx-auto text-center text-2xl w-full">Select A Teacher !</p>
 
-      <hr className="border border-black w-full my-2" />
-      <div className="">
-        <Swiper
-          breakpoints={{
-            320: { slidesPerView: 3 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-            1440: { slidesPerView: 4 },
-          }}
-          slidesPerView={4}
-          freeMode={true}
-          pagination={{ clickable: true }}
-          className="mx-w-[800px] mx-auto"
-        >
-          {uniqueTeachers?.map((teacher) => (
-            <SwiperSlide key={teacher?._id}>
-              <div
-                onClick={() => setSelectedTeacher(teacher)}
-                className="cursor-pointer flex flex-col items-center drop-shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
-              >
-                <img
-                  className="w-12 h-12"
-                  src={require("../../../assests/Images/user.png")}
-                  alt="NoImage"
-                />
-                <div>
-                  <p className="text-center">{teacher?.username}</p>
+      <hr className="border border-black w-full my-4" />
+      <div>
+        {uniqueTeachers && uniqueTeachers.length > 0 ? (
+          <Swiper
+            breakpoints={{
+              320: { slidesPerView: 3 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1440: { slidesPerView: 4 },
+            }}
+            slidesPerView={4}
+            freeMode={true}
+            pagination={{ clickable: true }}
+            className="mx-w-[800px] mx-auto"
+          >
+            {uniqueTeachers?.map((teacher) => (
+              <SwiperSlide key={teacher?._id}>
+                <div
+                  onClick={() => setSelectedTeacher(teacher)}
+                  className="cursor-pointer flex flex-col items-center transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                  <img
+                    className="w-12 h-12 drop-shadow-2xl"
+                    src={require("../../../assests/Images/user.png")}
+                    alt="NoImage"
+                  />
+                  <div>
+                    <p className="text-center">{teacher?.username}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p className="text-lg text-center text-red-400">
+            There Is No Teacher Uploaded A Courses !
+          </p>
+        )}
       </div>
-      <hr className="border border-black w-full my-2" />
+      <hr className="border border-black w-full my-4" />
 
       {selectedTeacher && (
         <div className="flex flex-row flex-wrap gap-20 justify-center">
