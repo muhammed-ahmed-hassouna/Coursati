@@ -9,7 +9,7 @@ const {
   addCourse,
   updateCourse,
   softDeleteCourse,
-  uploadFile
+  uploadFile,
 } = require('../controllers/courseController');
 
 const authMiddleware = require('../middlewares/authMiddleware');
@@ -45,6 +45,11 @@ router.put(
   softDeleteCourse
 );
 
-router.post('/upload', upload.single('image'), uploadFile);
+router.post(
+  '/upload',
+  upload.single('file'),
+  authMiddleware.authorize(['teacher']),
+  uploadFile
+);
 
 module.exports = router;
