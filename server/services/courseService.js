@@ -1,9 +1,17 @@
 const Course = require('../models/Course');
-const Firebase = require('../config/FirebaseConfig/FireBaseConfig');
 
 const getAllCourses = async () => {
-  const courses = await Course.find({ deleted: false });
-  if (!courses) throw new Error('Courses not found');
+  const currentDate = new Date();
+  const courses = await Course.find({
+    deleted: false,
+    endDate: { $gte: currentDate },
+  }).populate({
+    path: 'teacher',
+    select: '-password -createdAt -__v',
+  });
+  if (!courses || courses.length === 0) {
+    throw new Error('Courses not found');
+  }
   return courses;
 };
 
