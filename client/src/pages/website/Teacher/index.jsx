@@ -27,24 +27,25 @@ export default function TeacherIndex() {
     queryFn: () => getCourseByTeacherId(userId),
   });
 
-  const { mutateAsync: addCourseMutate } = useMutation({
-    mutationFn: uploadCourse,
-    onSuccess: (data) => {
-      refetch();
-      setOnUploadClick(false);
-      toast.success("Course added successfully!");
-    },
-    onError: (error) => {
-      toast.error("Error adding course. Please try again.");
-      console.error("Error adding course:", error);
-    },
-  });
+  const { mutateAsync: addCourseMutate, isSuccess: addCourseSuccess } =
+    useMutation({
+      mutationFn: uploadCourse,
+      onSuccess: (data) => {
+        setOnUploadClick(false);
+        toast.success("Course added successfully!");
+        refetch();
+      },
+      onError: (error) => {
+        toast.error("Error adding course. Please try again.");
+        console.error("Error adding course:", error);
+      },
+    });
 
   const { mutateAsync: DeleteCardMutate } = useMutation({
     mutationFn: softDeleteCourse,
     onSuccess: () => {
-      refetch();
       toast.success("Course Deleted successfully!");
+      refetch();
     },
     onError: (error) => {
       toast.error("Error Deleting course. Please try again.");
@@ -52,12 +53,11 @@ export default function TeacherIndex() {
     },
   });
 
-  const { mutateAsync: updateCourseMutate } = useMutation({
+  const { mutateAsync: updateCourseMutate, isSuccess } = useMutation({
     mutationFn: updateCourse,
     onSuccess: () => {
-      refetch();
       setOnClickEdit(false);
-      toast.success("Course updated successfully!");
+      refetch();
     },
     onError: (error) => {
       toast.error("Error updating Course. Please try again.");
@@ -142,6 +142,11 @@ export default function TeacherIndex() {
     }
   }, [isError]);
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Course updated successfully!");
+    }
+  }, [isSuccess]);
   return (
     <>
       {onUploadClick ? (

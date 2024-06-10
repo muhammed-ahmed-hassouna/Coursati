@@ -9,17 +9,7 @@ import ImageUploader from "../../../shared/Image/ImageUploader";
 import VideoUploader from "../../../shared/Video/VideoUploader";
 
 const UploadCourse = ({ onCancel, onSave }) => {
-  const {
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    setFieldValue,
-    setValues,
-    values,
-    isValid,
-    errors,
-    touched,
-  } = useFormik({
+  const formik = useFormik({
     initialValues: {
       course_name: "",
       description: "",
@@ -35,23 +25,23 @@ const UploadCourse = ({ onCancel, onSave }) => {
   });
 
   const handleImageSelect = (imageUrl) => {
-    setFieldValue("image", imageUrl);
+    formik.setFieldValue("image", imageUrl);
   };
 
   const handleVideoSelect = (videoUrl) => {
-    setFieldValue("video", videoUrl);
+    formik.setFieldValue("video", videoUrl);
   };
 
   return (
     <div className="max-w-[1980px] rounded-xl bg-white px-4 text-black shadow-lg">
       <div className="mt-4 max-w-[1980px] bg-white p-4 px-4 text-black shadow-lg">
         <h3 className="mb-4 text-xl font-semibold">Upload Course</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
             <ImageUploader onImageSelect={handleImageSelect} />
-            {values?.image && (
+            {formik.values.image && (
               <img
-                src={values?.image}
+                src={formik.values.image}
                 alt="Selected"
                 className="mt-2  h-auto max-w-full rounded-md"
                 style={{ maxHeight: "200px" }}
@@ -61,24 +51,24 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <CustomInput
               type="text"
               name="image"
-              value={values?.image}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.image}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.image}
-              error={errors?.image}
-              isTouched={touched?.image}
+              isError={formik.errors.image}
+              error={formik.errors.image}
+              isTouched={formik.touched.image}
             />
           </div>
           <div className="mb-4">
             <VideoUploader onVideoSelect={handleVideoSelect} />
-            {values?.video && (
+            {formik.values.video && (
               <video
-                src={values?.video}
+                src={formik.values.video}
                 alt="Selected"
                 className="mt-2 h-auto max-w-full rounded-md"
                 style={{ maxHeight: "200px" }}
@@ -89,35 +79,38 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <CustomInput
               type="text"
               name="video"
-              value={values?.video}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.video}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.video}
-              error={errors?.video}
-              isTouched={touched?.video}
+              isError={formik.errors.video}
+              error={formik.errors.video}
+              isTouched={formik.touched.video}
             />
           </div>
+          {/*
+  Repeat the same structure for other form fields 
+*/}
           <div className="mb-4">
             <Label text="Course Name" />
             <CustomInput
               type="text"
               name="course_name"
-              value={values?.course_name}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.course_name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.course_name}
-              error={errors?.course_name}
-              isTouched={touched?.course_name}
+              isError={formik.errors.course_name}
+              error={formik.errors.course_name}
+              isTouched={formik.touched.course_name}
             />
           </div>
           <div className="mb-4">
@@ -125,17 +118,17 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <CustomInput
               type="text"
               name="description"
-              value={values?.description}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.description}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.description}
-              error={errors?.description}
-              isTouched={touched?.description}
+              isError={formik.errors.description}
+              error={formik.errors.description}
+              isTouched={formik.touched.description}
             />
           </div>
           <div className="mb-4">
@@ -143,17 +136,17 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <CustomInput
               type="date"
               name="startDate"
-              value={values?.startDate}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.startDate}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.startDate}
-              error={errors?.startDate}
-              isTouched={touched?.startDate}
+              isError={formik.errors.startDate}
+              error={formik.errors.startDate}
+              isTouched={formik.touched.startDate}
             />
           </div>
           <div className="mb-4">
@@ -161,19 +154,20 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <CustomInput
               type="date"
               name="endDate"
-              value={values?.endDate}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              value={formik.values.endDate}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               className="w-full"
               withFocus={true}
               shape={3}
             />
             <ErrorFormik
-              isError={errors?.endDate}
-              error={errors?.endDate}
-              isTouched={touched?.endDate}
+              isError={formik.errors.endDate}
+              error={formik.errors.endDate}
+              isTouched={formik.touched.endDate}
             />
           </div>
+
           <div className="flex justify-end">
             <FilledButton
               text="Cancel"
@@ -186,16 +180,11 @@ const UploadCourse = ({ onCancel, onSave }) => {
             <FilledButton
               text="Save"
               isButton={true}
-              onClick={onSave}
-              icon={
-                <div className="m-1">
-                  <FiSave />
-                </div>
-              }
+              icon={<FiSave />}
               buttonType="submit"
               className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
               width="w-20"
-              isDisable={!isValid}
+              isDisable={!formik.isValid || formik.isSubmitting}
             />
           </div>
         </form>
@@ -203,4 +192,5 @@ const UploadCourse = ({ onCancel, onSave }) => {
     </div>
   );
 };
+
 export default UploadCourse;
