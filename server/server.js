@@ -6,10 +6,8 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 3999;
-
 const corsOptions = {
-  origin: `http://localhost:${PORT}`,  
+  origin: `http://localhost:3000`,  
   credentials: true,  
   optionsSuccessStatus: 200 
 };
@@ -30,6 +28,8 @@ const courseRoutes = require("./routes/courseRoutes")
 
 app.use(authRoutes);
 app.use(courseRoutes);
+
+const PORT = process.env.PORT || 3999;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
