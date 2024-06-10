@@ -6,7 +6,15 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
+const PORT = process.env.PORT || 3999;
+
+const corsOptions = {
+  origin: `http://localhost:${PORT}`,  
+  credentials: true,  
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions));
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -22,8 +30,6 @@ const courseRoutes = require("./routes/courseRoutes")
 
 app.use(authRoutes);
 app.use(courseRoutes);
-
-const PORT = process.env.PORT || 3999;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
