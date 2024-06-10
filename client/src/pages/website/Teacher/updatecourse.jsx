@@ -6,6 +6,7 @@ import { FiSave } from "react-icons/fi";
 import ErrorFormik from "../../../components/ui/ErrorFormik";
 import { courseSchema } from "../../../utils/forms-schemas";
 import ImageUploader from "../../../shared/Image/ImageUploader";
+import VideoUploader from "../../../shared/Video/VideoUploader";
 
 const UpdateCourse = ({ data, onCancel, onSave }) => {
   const {
@@ -20,11 +21,16 @@ const UpdateCourse = ({ data, onCancel, onSave }) => {
     touched,
   } = useFormik({
     initialValues: {
-      course_name: data?.course_name || '',
-      description: data?.description || '', 
-      startDate: data?.startDate ? new Date(data.startDate).toISOString().split('T')[0] : '',
-      endDate: data?.endDate ? new Date(data.endDate).toISOString().split('T')[0] : '',
-      image: data?.image || '',
+      course_name: data?.course_name || "",
+      description: data?.description || "",
+      startDate: data?.startDate
+        ? new Date(data.startDate).toISOString().split("T")[0]
+        : "",
+      endDate: data?.endDate
+        ? new Date(data.endDate).toISOString().split("T")[0]
+        : "",
+      image: data?.image || "",
+      video: data?.video || "",
     },
     validationSchema: courseSchema,
     onSubmit: (values) => {
@@ -35,6 +41,11 @@ const UpdateCourse = ({ data, onCancel, onSave }) => {
   const handleImageSelect = (imageUrl) => {
     setFieldValue("image", imageUrl);
   };
+
+  const handleVideoSelect = (videoUrl) => {
+    setFieldValue("video", videoUrl);
+  };
+
   return (
     <div className="max-w-[1980px] rounded-xl bg-white px-4 text-black shadow-lg">
       <div className="mt-4 max-w-[1980px] bg-white p-4 px-4 text-black shadow-lg">
@@ -65,6 +76,34 @@ const UpdateCourse = ({ data, onCancel, onSave }) => {
               isError={errors?.image}
               error={errors?.image}
               isTouched={touched?.image}
+            />
+          </div>
+          <div className="mb-4">
+            <VideoUploader onVideoSelect={handleVideoSelect} />
+            {values?.video && (
+              <video
+                src={values?.video}
+                alt="Selected"
+                className="mt-2 h-auto max-w-full rounded-md"
+                style={{ maxHeight: "200px" }}
+                controls
+              />
+            )}
+            <Label text="Video URL" />
+            <CustomInput
+              type="text"
+              name="video"
+              value={values?.video}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="w-full"
+              withFocus={true}
+              shape={3}
+            />
+            <ErrorFormik
+              isError={errors?.video}
+              error={errors?.video}
+              isTouched={touched?.video}
             />
           </div>
           <div className="mb-4">

@@ -9,7 +9,7 @@ const ImageUploader = ({ onImageSelect, fieldPath }) => {
         const file = e.target.files[0];
         if (file) {
             const formData = new FormData();
-            formData.append('image', file);
+            formData.append('file', file);
 
             try {
                 const response = await api.post(`/upload`, formData, {
@@ -31,7 +31,7 @@ const ImageUploader = ({ onImageSelect, fieldPath }) => {
         <div className="mt-4 flex items-center">
             <label htmlFor={`imageInput_${fieldPath}`} className="cursor-pointer bg-orange-500 text-white hover:bg-orange-700 py-2 px-4 rounded inline-block flex items-center"> {/* Apply flex to align label contents */}
                 Choose Image
-                <FiUpload className='ml-4' /> {/* Icon */}
+                <FiUpload className='ml-4' />
             </label>
             <input
                 type="file"

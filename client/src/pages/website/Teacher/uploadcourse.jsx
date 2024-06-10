@@ -6,6 +6,7 @@ import { FiSave } from "react-icons/fi";
 import ErrorFormik from "../../../components/ui/ErrorFormik";
 import { courseSchema } from "../../../utils/forms-schemas";
 import ImageUploader from "../../../shared/Image/ImageUploader";
+import VideoUploader from "../../../shared/Video/VideoUploader";
 
 const UploadCourse = ({ onCancel, onSave }) => {
   const {
@@ -25,6 +26,7 @@ const UploadCourse = ({ onCancel, onSave }) => {
       startDate: "",
       endDate: "",
       image: "",
+      video: "",
     },
     validationSchema: courseSchema,
     onSubmit: (values) => {
@@ -35,6 +37,11 @@ const UploadCourse = ({ onCancel, onSave }) => {
   const handleImageSelect = (imageUrl) => {
     setFieldValue("image", imageUrl);
   };
+
+  const handleVideoSelect = (videoUrl) => {
+    setFieldValue("video", videoUrl);
+  };
+
   return (
     <div className="max-w-[1980px] rounded-xl bg-white px-4 text-black shadow-lg">
       <div className="mt-4 max-w-[1980px] bg-white p-4 px-4 text-black shadow-lg">
@@ -65,6 +72,34 @@ const UploadCourse = ({ onCancel, onSave }) => {
               isError={errors?.image}
               error={errors?.image}
               isTouched={touched?.image}
+            />
+          </div>
+          <div className="mb-4">
+            <VideoUploader onVideoSelect={handleVideoSelect} />
+            {values?.video && (
+              <video
+                src={values?.video}
+                alt="Selected"
+                className="mt-2 h-auto max-w-full rounded-md"
+                style={{ maxHeight: "200px" }}
+                controls
+              />
+            )}
+            <Label text="Video URL" />
+            <CustomInput
+              type="text"
+              name="video"
+              value={values?.video}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="w-full"
+              withFocus={true}
+              shape={3}
+            />
+            <ErrorFormik
+              isError={errors?.video}
+              error={errors?.video}
+              isTouched={touched?.video}
             />
           </div>
           <div className="mb-4">
