@@ -10,8 +10,8 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: [String], 
-    default: [],
+    type: String, 
+    default: '',
   },
   startDate: {
     type: Date,
