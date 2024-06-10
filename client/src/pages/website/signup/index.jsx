@@ -27,11 +27,9 @@ const SignUp = () => {
       const { access_token, role } = data.user || {};
       Cookies.set("userData", JSON.stringify({ access_token, role }));
       setIsLog(true);
-      
+
       if (role === "teacher") {
         navigate("/teacher");
-      } else if (role === "student") {
-        navigate("/student");
       } else {
         navigate("/");
       }

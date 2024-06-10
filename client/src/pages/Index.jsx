@@ -5,9 +5,9 @@ import UnAuthorized from "./website/Unauthorized";
 import NotFound from "./website/NotFound";
 import SignUp from "./website/signup";
 import TopNav from "../shared/TopNav";
-import Student from "./website/Student/student";
 import TeacherIndex from "./website/Teacher";
 import ProtectedRoute from "./../providers/ProtectedRoute";
+import StudentIndex from "./website/Student";
 
 export default function Index() {
   return (
@@ -21,7 +21,7 @@ export default function Index() {
         <Route path="*" element={<NotFound />} />
 
         <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
-          <Route path="/" element={<Student />} />
+          <Route path="/" element={<StudentIndex />} />
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
