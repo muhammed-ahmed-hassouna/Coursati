@@ -9,10 +9,6 @@ Coursati is a basic academic portal that facilitates course management for stude
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Evaluation Criteria](#evaluation-criteria)
-- [Submission](#submission)
-- [Conclusion](#conclusion)
 
 ## Features
 
@@ -53,7 +49,7 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 
 ### Server (Backend)
 
-1. Navigate to the client directory:
+1. Navigate to the server directory:
    ```bash
    cd server
    ```
