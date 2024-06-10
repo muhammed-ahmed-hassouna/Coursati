@@ -27,7 +27,7 @@ export default function TeacherIndex() {
     queryFn: () => getCourseByTeacherId(userId),
   });
 
-  const { mutateAsync: addCourseMutate, isSuccess: addCourseSuccess } =
+  const { mutateAsync: addCourseMutate} =
     useMutation({
       mutationFn: uploadCourse,
       onSuccess: (data) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { usePublicContext } from "../../../providers/PublicContextProvider";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { getAllCourses } from "../../../queries/getQueryFns";
 import Student from "./student";
