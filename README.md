@@ -85,5 +85,5 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 4. Running the Frontend :
 
 ```bash
-    npm start run dev
+    npm run dev
 ```
