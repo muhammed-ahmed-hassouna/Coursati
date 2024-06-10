@@ -7,10 +7,10 @@ const getAllCourses = async () => {
   return courses;
 };
 
-const getCourseById = async (courseId) => {
-  const course = await Course.findById(courseId, { deleted: false });
+const getCourseByTeacherId = async (teacherID) => {
+  const course = await Course.find({ teacher: teacherID, deleted: false });
   if (!course) {
-    throw new Error('Course not found');
+    throw new Error('Course For this Teacher not found');
   }
   return course;
 };
@@ -21,22 +21,16 @@ const addCourse = async ({
   startDate,
   endDate,
   teacherID,
-  file,
+  image,
 }) => {
   try {
-    let fileUrl = [];
-    if (file) {
-      const fileName = `${Date.now()}_${file.originalname}`;
-      fileUrl = await Firebase.uploadFileToFirebase(file, fileName);
-    }
-
     const course = new Course({
       course_name,
       description,
       startDate,
       endDate,
       teacher: teacherID,
-      image: fileUrl,
+      image,
     });
 
     await course.save();
@@ -70,7 +64,7 @@ const softDeleteCourse = async (courseId) => {
 
 module.exports = {
   getAllCourses,
-  getCourseById,
+  getCourseByTeacherId,
   addCourse,
   updateCourse,
   softDeleteCourse,

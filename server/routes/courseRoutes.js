@@ -5,10 +5,11 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const {
   getAllCourses,
-  getCourseById,
+  getCourseByTeacherId,
   addCourse,
   updateCourse,
   softDeleteCourse,
+  uploadFile
 } = require('../controllers/courseController');
 
 const authMiddleware = require('../middlewares/authMiddleware');
@@ -20,9 +21,9 @@ router.get(
 );
 
 router.get(
-  '/getCourseById/:id',
+  '/getCourseByTeacherId/:id',
   authMiddleware.authorize(['teacher', 'student']),
-  getCourseById
+  getCourseByTeacherId
 );
 
 router.post(
@@ -43,5 +44,7 @@ router.put(
   authMiddleware.authorize(['teacher']),
   softDeleteCourse
 );
+
+router.post('/upload', upload.single('image'), uploadFile);
 
 module.exports = router;
