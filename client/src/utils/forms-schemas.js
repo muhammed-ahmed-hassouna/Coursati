@@ -43,6 +43,7 @@ export const courseSchema = yup.object().shape({
     .max(500, "Too Long!")
     .required("Required"),
   image: yup.mixed().required("Required"),
+  video: yup.mixed().required("Required"),
   startDate: yup.date().required("Required"),
   endDate: yup
     .date()

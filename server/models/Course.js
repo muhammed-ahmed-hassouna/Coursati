@@ -10,8 +10,14 @@ const courseSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String, 
+    type: String,
     default: '',
+    required: true,
+  },
+  video: {
+    type: String,
+    default: '',
+    required: true,
   },
   startDate: {
     type: Date,

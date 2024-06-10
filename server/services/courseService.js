@@ -22,6 +22,7 @@ const addCourse = async ({
   endDate,
   teacherID,
   image,
+  video,
 }) => {
   try {
     const course = new Course({
@@ -31,6 +32,7 @@ const addCourse = async ({
       endDate,
       teacher: teacherID,
       image,
+      video,
     });
 
     await course.save();
