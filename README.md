@@ -50,6 +50,7 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 ### Server (Backend)
 
 1. Navigate to the server directory:
+
    ```bash
    cd server
    ```
@@ -59,7 +60,9 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
    npm install
 ```
 
-3. Running the Backend :
+3. Add env Environment file.
+
+4. Running the Backend :
 
 ```bash
     npm start run dev
@@ -76,7 +79,10 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 ```bash
    npm install
 ```
-3. Running the Frontend :
+
+3. Add env Environment file.
+
+4. Running the Frontend :
 
 ```bash
     npm start run dev
