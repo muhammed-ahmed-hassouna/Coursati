@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { usePublicContext } from "../../../providers/PublicContextProvider";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
-import { getCourseById } from "../../../queries/getQueryFns";
+import { getCourseByTeacherId } from "../../../queries/getQueryFns";
 import Teacher from "./teacher";
 import { uploadCourse } from "../../../queries/postQueryFns";
 import UploadCourse from "./uploadcourse";
@@ -24,7 +24,7 @@ export default function TeacherIndex() {
     refetch,
   } = useQuery({
     queryKey: ["coursesData"],
-    queryFn: () => getCourseById(userId),
+    queryFn: () => getCourseByTeacherId(userId),
   });
 
   const { mutateAsync: addCourseMutate } = useMutation({
@@ -90,8 +90,9 @@ export default function TeacherIndex() {
       startDate: newData.startDate,
       endDate: newData.endDate,
       image: newData.image,
+      video: newData.video,
     };
-  
+
     try {
       await addCourseMutate({
         formData: serializableData,
@@ -102,7 +103,6 @@ export default function TeacherIndex() {
       console.error("Error updating data:", error);
     }
   };
-  
 
   const handleSaveUpdate = async (updatedData) => {
     const serializableData = {
@@ -111,6 +111,7 @@ export default function TeacherIndex() {
       startDate: updatedData.startDate,
       endDate: updatedData.endDate,
       image: updatedData.image,
+      video: updatedData.video,
     };
 
     try {
