@@ -11,7 +11,7 @@ const useAuthProvider = () => {
   const userData = getUserCookies();
 
   useEffect(() => {
-    const isUserAuthorized = userData.role === 2 && isLog;
+    const isUserAuthorized = ((userData?.role === 'teacher' || userData?.role === 'student') && isLog);
     const loadingDelay = setTimeout(() => {
       if (!isUserAuthorized) {
         deleteUserCookies();

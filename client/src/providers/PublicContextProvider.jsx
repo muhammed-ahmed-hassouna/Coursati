@@ -19,6 +19,7 @@ export default function ReactPublicContextProvider({ children }) {
         setIsLoading,
         isLog,
         setIsLog,
+        userId: userData?.userID,
       }}
     >
       {children}
