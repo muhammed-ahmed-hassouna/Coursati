@@ -47,7 +47,7 @@ export default function CustomInput({
         name={name}
         defaultValue={defaultValue}
         value={value}
-        className={`${shapeClass} ${disabledClass} ${focusClass} ${shapeClass} ${className}`}
+        className={`${shapeClass} ${disabledClass} ${focusClass} ${shapeClass} ${className} text-black`}
         type={type}
         onChange={onChange}
         onBlur={onBlur}

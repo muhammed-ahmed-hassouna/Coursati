@@ -15,8 +15,8 @@ function FilledButton({
   className = 'rounded-custom-44',
 }) {
   const buttonStyles = {
-    normal: `${className}  bg-primary_1 justify-center items-center inline-flex text-primary_2 transaction-colors duration-200 select-none`,
-    disabled: `${className} bg-secondary_4 justify-center items-center inline-flex text-primary_2 transaction-colors duration-200 select-none`,
+    normal: `bg-primary_1 justify-center items-center inline-flex text-primary_2 transition-colors duration-200 select-none ${className}`,
+    disabled: `bg-secondary_4 justify-center items-center inline-flex text-primary_2 transition-colors duration-200 select-none ${className}`,
   };
 
   const buttonClass = isDisable ? buttonStyles.disabled : buttonStyles.normal;
@@ -44,7 +44,7 @@ function FilledButton({
     <div className={`${width} ${height} ${buttonStyles.disabled}`}>{text}</div>
   ) : (
     <CustomLink path={path}>
-      <button type='button' className={`${width} ${height} ${buttonClass}`}>
+      <button type="button" className={`${width} ${height} ${buttonClass}`}>
         {iconLeft ? (
           <>
             {icon}
@@ -72,6 +72,7 @@ FilledButton.propTypes = {
   onClick: PropTypes.func,
   buttonType: PropTypes.string,
   isDisable: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default FilledButton;
