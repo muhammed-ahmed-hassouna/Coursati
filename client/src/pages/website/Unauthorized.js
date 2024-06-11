@@ -52,7 +52,7 @@ export default function UnAuthorized() {
                 ? "student"
                 : userRole === "teacher"
                 ? "teacher"
-                : "home"}{" "}
+                : "LogIn"}{" "}
               page
             </Link>
           </div>
