@@ -57,7 +57,7 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 2. Install dependencies using npm:
 
 ```bash
-   npm install
+npm install
 ```
 
 3. Add env Environment file.
@@ -65,7 +65,7 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 4. Running the Backend :
 
 ```bash
-    npm start run dev
+npm start run dev
 ```
 
 ### Client (Frontend)
@@ -77,7 +77,7 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 2. Install dependencies using npm:
 
 ```bash
-   npm install
+npm install
 ```
 
 3. Add env Environment file.
@@ -85,5 +85,5 @@ git clone https://github.com/muhammed-ahmed-hassouna/Coursati
 4. Running the Frontend :
 
 ```bash
-    npm run dev
+npm start
 ```
